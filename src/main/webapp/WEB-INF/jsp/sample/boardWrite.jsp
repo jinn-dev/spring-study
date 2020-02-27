@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
-
 	<form id="frm" name="frm" enctype="multipart/form-data">
 		<table class="board_view">
 			<colgroup>
@@ -24,14 +24,24 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="file" name="file"> <br/><br/>	<!-- 파일 업로드 항목 추가 -->
-		
-		<a href="#this" class="btn" id="write">작성하기</a>
+		<div id="fileDiv">
+			<p>
+				<input type="file" id="file" name="file_0"> 
+				<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+			</p>
+		</div>
+		<br/>
+		<br/> 
+		<a href="#this" class="btn" id="addFile">파일 추가</a> 
+		<a href="#this" class="btn" id="write">작성하기</a> 
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</form>
 
+
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
+		var gfv_count = 1;
+		
 		$(document).ready(function() {
 			//목록으로 버튼
 			$("#list").on("click", function(e) {
@@ -43,6 +53,18 @@
 			$("#write").on("click", function(e) {
 				e.preventDefault();
 				fn_insertBoard();
+			});
+			
+			//파일 추가 버튼
+			$("#addFile").on("click", function(e){ 
+				e.preventDefault();
+				fn_addFile();
+			});
+			
+			//삭제 버튼
+			$("a[name='delete']").on("click", function(e){ 
+				e.preventDefault();
+				fn_deleteFile($(this));
 			});
 		});
 		
@@ -57,6 +79,25 @@
 			comSubmit.setUrl("<c:url value='/sample/insertBoard.do' />");
 			comSubmit.submit();
 		}
+		
+		function fn_addFile(){ 
+			var str = "<p><input type='file' name='file_"
+			+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+			
+			$("#fileDiv").append(str); 
+			
+			//삭제 버튼
+			$("a[name='delete']").on("click", function(e){  
+				e.preventDefault(); 
+				fn_deleteFile($(this)); 
+			}); 
+			
+		} 
+		
+		function fn_deleteFile(obj){ 
+			obj.parent().remove(); 
+		}
+
 	</script>
 
 

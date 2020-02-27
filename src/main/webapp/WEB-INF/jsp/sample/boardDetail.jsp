@@ -37,7 +37,9 @@
 				<th scope="row">첨부파일</th>
 				<td colspan="3"><c:forEach var="row" items="${list }">
 						<input type="hidden" id="IDX" value="${row.IDX }">
-						<a href="#this" name="file">${row.ORIGINAL_FILE_NAME }</a> (${row.FILE_SIZE }kb) </c:forEach>
+						<a href="#this" name="file">${row.ORIGINAL_FILE_NAME }</a> (${row.FILE_SIZE }kb) 
+						<p>
+						</c:forEach>
 				</td>
 			</tr>
 		</tbody>
