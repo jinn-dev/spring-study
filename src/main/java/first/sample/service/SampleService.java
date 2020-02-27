@@ -22,7 +22,7 @@ public interface SampleService {
 
 	void deleteBoard(Map<String, Object> map) throws Exception;
 
-	void insertBoard(Map<String, Object> map, HttpServletRequest request);
+	void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 
 }

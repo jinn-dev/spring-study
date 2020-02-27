@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import first.common.util.FileUtils;
 import first.sample.dao.SampleDAO;
 
 /**
@@ -24,6 +25,9 @@ public class SampleServiceImpl implements SampleService {
 
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
+	
 	@Resource(name = "sampleDAO")
 	private SampleDAO sampleDAO;
 
@@ -34,27 +38,15 @@ public class SampleServiceImpl implements SampleService {
 	}
 
 	@Override
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		sampleDAO.updateHitCnt(map);
-		Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map);
-		return resultMap;
-	}
-
-	@Override
-	public void updateBoard(Map<String, Object> map) throws Exception {
-		sampleDAO.updateBoard(map);
-	}
-
-	@Override
-	public void deleteBoard(Map<String, Object> map) throws Exception {
-		sampleDAO.deleteBoard(map);
-
-	}
-
-	@Override
-	public void insertBoard(Map<String, Object> map, HttpServletRequest request) {
+	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		sampleDAO.insertBoard(map);
 
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		int size = list.size();
+		for(int i=0;i<size; i++) {
+			sampleDAO.insertFile(list.get((i)));
+			
+		}
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
@@ -71,7 +63,23 @@ public class SampleServiceImpl implements SampleService {
 
 			}
 		}
+	}
+	
+	@Override
+	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
+		sampleDAO.updateHitCnt(map);
+		Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map);
+		return resultMap;
+	}
 
+	@Override
+	public void updateBoard(Map<String, Object> map) throws Exception {
+		sampleDAO.updateBoard(map);
+	}
+
+	@Override
+	public void deleteBoard(Map<String, Object> map) throws Exception {
+		sampleDAO.deleteBoard(map);
 	}
 
 }
