@@ -116,17 +116,23 @@
 			comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />"); 
 			comSubmit.addParam("IDX", $("#IDX").val()); comSubmit.submit(); } 
 		
-		function fn_addFile(){ var str = "<p>" + "<input type='file' id='file_"+(gfv_count)
+		function fn_addFile(){ 
+			var str = "<p>" + "<input type='file' id='file_"+(gfv_count)
 			+"' name='file_"+(gfv_count)+"'>"+ "<a href='#this' class='btn' id='delete_"
 			+(gfv_count)+"' name='delete_"+(gfv_count)+"'>삭제</a>" + "</p>"; 
 			
-			$("#fileDiv").append(str); $("#delete_"+(gfv_count++)).on("click", function(e){ 
+			$("#fileDiv").append(str); 
+			
+			$("#delete_"+(gfv_count++)).on("click", function(e){ 
 				//삭제 버튼
 				e.preventDefault(); 
-				fn_deleteFile($(this)); }); } 
+				fn_deleteFile($(this)); 
+			}); 
+		} 
 		
 		function fn_deleteFile(obj){
-			obj.parent().remove(); } 
+			obj.parent().remove(); 
+		} 
 		</script>
 </body>
 </html>
