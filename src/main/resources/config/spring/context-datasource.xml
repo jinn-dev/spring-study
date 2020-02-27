@@ -8,8 +8,8 @@
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:ORCL" />
-		<property name="username" value="아이디" />
-		<property name="password" value="비밀번호" />
+		<property name="username" value="DEV01" />
+		<property name="password" value="gtone" />
 	</bean>
 </beans>
 
