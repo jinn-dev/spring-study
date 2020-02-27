@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import first.common.common.CommandMap;
+import first.common.CommandMap;
 import first.sample.service.SampleService;
 
 /**
@@ -83,7 +83,8 @@ public class SampleController {
 	public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sample/boardDetail");
 		Map<String, Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("map"));	//기존 게시글 정보
+		mv.addObject("list", map.get("list"));	//첨부파일 목록
 		return mv;
 	}
 	
