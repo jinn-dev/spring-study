@@ -33,4 +33,9 @@ public class BoardDAO extends AbstractDAO {
 		update("board.updateBoard", map);
 	}
 
+	public void deleteBoard(Map<String, Object> map) {
+		delete("board.deleteBoard", map);
+		
+	}
+
 }

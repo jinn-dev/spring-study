@@ -68,6 +68,15 @@ public class BoardController {
 		return mv;
 	}
 
+	@RequestMapping(value="/board/delete")
+	public ModelAndView deleteBoard(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/board/list");
+		
+		boardService.deleteBoard(commandMap.getMap());
+		
+		return mv;
+	}
+
 	
 	
 	

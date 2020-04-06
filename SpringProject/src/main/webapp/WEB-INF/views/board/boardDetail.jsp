@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>상세 게시글</title>
 <%@ include file="/WEB-INF/views/board/include-header.jsp"%>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 </head>
 <body>
 	<table class="board_view">
@@ -34,7 +35,7 @@
 				<td colspan="3">${map.TITLE }</td>
 			</tr>
 			<tr>
-				<td colspan="4">${map.CONTENTS }</td>
+				<td colspan="4">${fn:replace(map.CONTENTS, newLineChar, "<br/>")}</td>
 			</tr>
 		</tbody>
 	</table>
