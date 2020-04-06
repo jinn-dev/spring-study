@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +38,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/insert")
-	public ModelAndView insertBoard(CommandMap commandMap) {
+	public ModelAndView insertBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/board/list");
-		boardService.insertBoard(commandMap.getMap());
+		boardService.insertBoard(commandMap.getMap(), request);
 		return mv;
 	}
 	

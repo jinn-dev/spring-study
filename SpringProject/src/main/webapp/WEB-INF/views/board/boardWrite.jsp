@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/board/include-header.jsp"%>
 </head>
 <body>
-	<form id="frm">
+	<form id="frm" name="frm" enctype="multipart/form-data">
 		<table class="board_view">
 			<colgroup>
 				<col width="15%" />
@@ -26,9 +26,11 @@
 				</tr>
 			</tbody>
 		</table>
+		<input type="file" name="file"><br><br>
+		<a href="#this" class="btn" id="list">목록으로</a>
+		<a href="#this" class="btn" id="write">저장하기</a>	
 	</form>
-	<a href="#this" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="write">저장하기</a>
+
 	<%@ include file="/WEB-INF/views/board/include-body.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function() {

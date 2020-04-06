@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mycompany.myapp.common.util.FileUtil;
 import com.mycompany.myapp.dao.BoardDAO;
 
 @Service("boardService")
@@ -18,6 +22,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Resource(name="boardDAO")
 	private BoardDAO boardDAO;
+
+	@Resource(name="fileUtil")
+	private FileUtil fileUtil;
 	
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) {
@@ -25,8 +32,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void insertBoard(Map<String, Object> map) {
+	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		boardDAO.insertBoard(map);
+		
+		List<Map<String, Object>> list = fileUtil.parseInsertFileInfo(map, request);
+		for (int i = 0, size = list.size(); i < size; i++) {
+			boardDAO.insertFile(list.get(i));
+		}
 	}
 
 	@Override

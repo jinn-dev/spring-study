@@ -38,4 +38,8 @@ public class BoardDAO extends AbstractDAO {
 		
 	}
 
+	public void insertFile(Map<String, Object> map) {
+		insert("board.insertFile", map);
+	}
+
 }
