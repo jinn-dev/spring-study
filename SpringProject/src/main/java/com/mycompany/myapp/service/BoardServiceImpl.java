@@ -23,5 +23,10 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) {
 		return boardDAO.selectBoardList(map);
 	}
+
+	@Override
+	public void insertBoard(Map<String, Object> map) {
+		boardDAO.insertBoard(map);
+	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.myapp.common.CommandMap;
 import com.mycompany.myapp.service.BoardService;
 
 @Controller
@@ -21,11 +22,24 @@ public class BoardController {
 	@Resource(name="boardService")
 	private BoardService boardService;
 	
-	@RequestMapping("/board/openBoardList")
-	public ModelAndView openBoardList(Map<String, Object> commandMap) {
+	@RequestMapping("/board/list")
+	public ModelAndView openBoardList(CommandMap commandMap) {
 		ModelAndView mv = new ModelAndView("/board/boardList");
-		List<Map<String, Object>> list = boardService.selectBoardList(commandMap);
+		List<Map<String, Object>> list = boardService.selectBoardList(commandMap.getMap());
 		mv.addObject("list", list);
+		return mv;
+	}
+	
+	@RequestMapping("/board/write")
+	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/board/boardWrite");
+		return mv;
+	}
+	
+	@RequestMapping("/board/insert")
+	public ModelAndView insertBoard(CommandMap commandMap) {
+		ModelAndView mv = new ModelAndView("redirect:/board/list");
+		boardService.insertBoard(commandMap.getMap());
 		return mv;
 	}
 	
