@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>게시판 목록</h2>
-	<table style="border: 1px solid #ccc">
+	<table class="board_list">
 		<colgroup>
 			<col width="10%" />
 			<col width="*" />
@@ -47,6 +47,7 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<a href="#this" class="btn" id="write">작성하기</a> 
 	<%@ include file="/WEB-INF/views/board/include-body.jsp"%>
 	<script type="text/javascript"> 
 		$(document).ready(function() {

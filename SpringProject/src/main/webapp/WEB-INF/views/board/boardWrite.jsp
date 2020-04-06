@@ -3,31 +3,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>게시글 작성</title>
 <%@ include file="/WEB-INF/views/board/include-header.jsp"%>
 </head>
 <body>
 	<form id="frm">
 		<table class="board_view">
 			<colgroup>
-				<col width="15%">
+				<col width="15%" />
 				<col width="*" />
 			</colgroup>
-			<caption>게시글 작성</caption>
+			<h2>게시글 작성</h2>
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					<td colspan="3"><input type="text" id="TITLE" name="TITLE"
+						class="wdp_90" value="${map.TITLE }" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="view_text"><textarea rows="20"
-							cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea></td>
+					<td colspan="4" class="view_text"><textarea rows="20"
+							cols="100" title="내용" id="CONTENTS" name="CONTENTS">${map.CONTENTS }</textarea>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="#this" class="btn" id="write">작성하기</a> 
-		<a href="#this" class="btn" id="list">목록으로</a>
 	</form>
+	<a href="#this" class="btn" id="list">목록으로</a>
+	<a href="#this" class="btn" id="write">저장하기</a>
 	<%@ include file="/WEB-INF/views/board/include-body.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function() {

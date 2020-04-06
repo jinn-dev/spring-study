@@ -34,5 +34,10 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.updateHitCnt(map);
 		return boardDAO.selectBoardDetail(map);
 	}
+
+	@Override
+	public void updateBoard(Map<String, Object> map) {
+		boardDAO.updateBoard(map);
+	}
 	
 }

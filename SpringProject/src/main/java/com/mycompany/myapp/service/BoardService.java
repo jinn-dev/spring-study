@@ -10,5 +10,7 @@ public interface BoardService {
 	void insertBoard(Map<String, Object> map);
 
 	Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception;
+
+	void updateBoard(Map<String, Object> map);
 	
 }

@@ -15,11 +15,11 @@
 			<col width="15%" />
 			<col width="35%" />
 		</colgroup>
-		<caption>게시글 상세</caption>
+		<h2>게시글 상세</h2>
 		<tbody>
 			<tr>
 				<th scope="row">글 번호</th>
-				<td>${map.TITLE }</td>
+				<td>${map.IDX }</td>
 				<th scope="row">조회수</th>
 				<td>${map.HIT_CNT }</td>
 			</tr>

@@ -29,4 +29,8 @@ public class BoardDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("board.selectBoardDetail", map);
 	}
 
+	public void updateBoard(Map<String, Object> map) {
+		update("board.updateBoard", map);
+	}
+
 }

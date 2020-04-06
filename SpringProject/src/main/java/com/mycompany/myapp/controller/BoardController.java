@@ -44,12 +44,32 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/detail")
-	public ModelAndView selectDetailBoard(CommandMap commandMap) throws Exception {
+	public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/board/boardDetail");
 		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
 		mv.addObject("map", map);
 		return mv;
 	}
+	
+	@RequestMapping("/board/update")
+	public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/board/boardUpdate");
+		Map<String,Object> map = boardService.selectBoardDetail(commandMap.getMap());
+		mv.addObject("map", map);
+		
+		return mv;
+	}
+
+	@RequestMapping("/board/updated")
+	public ModelAndView updatedBoard(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/board/detail");
+		boardService.updateBoard(commandMap.getMap());
+		mv.addObject("IDX", commandMap.get("IDX"));
+		return mv;
+	}
+
+	
+	
 	
 	
 }
