@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BoardList</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<title>게시판 목록</title>
+<%@ include file="/WEB-INF/views/board/include-header.jsp" %>
+
 </head>
 <body>
 	<h2>게시판 목록</h2>
@@ -30,7 +30,10 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.IDX }</td>
-							<td>${row.TITLE }</td>
+							<td>
+								<a href="#this" name="title">${row.TITLE }</a>
+								<input type="hidden" id="IDX" value="${row.IDX }">
+							</td>
 							<td>${row.HIT_CNT }</td>
 							<td>${row.CREA_DTM }</td>
 						</tr>
@@ -44,5 +47,30 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<%@ include file="/WEB-INF/views/board/include-body.jsp"%>
+	<script type="text/javascript"> 
+		$(document).ready(function() {
+			$("#write").on("click", function(e) {
+				e.preventDefault();
+				fn_openBoardWrite();
+			});
+			$("a[name='title']").on("click", function(e) {
+				e.preventDefault();
+				fn_openBoardDetail($(this));
+			});
+		});
+		function fn_openBoardWrite() {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/board/write' />");
+			comSubmit.submit();
+		}
+		function fn_openBoardDetail(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/board/detail' />");
+			comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+			comSubmit.submit();
+		}
+	</script>
+
 </body>
 </html>

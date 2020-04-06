@@ -43,5 +43,13 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/board/detail")
+	public ModelAndView selectDetailBoard(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/board/boardDetail");
+		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
+		mv.addObject("map", map);
+		return mv;
+	}
+	
 	
 }

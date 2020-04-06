@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<title>게시글 작성</title>
 <%@ include file="/WEB-INF/views/board/include-header.jsp"%>
 </head>
 <body>
